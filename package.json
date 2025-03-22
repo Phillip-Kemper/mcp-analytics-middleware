@@ -1,0 +1,26 @@
+{
+  "name": "mcp-analytics-middleware",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": "git@github.com:Phillip-Kemper/mcp-analytics-middleware.git",
+  "author": "Phillip-Kemper <33121795+Phillip-Kemper@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1",
+    "better-sqlite3": "^8.5.0",
+    "zod": "^3.24.2"
+  },
+  "peerDependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.5",
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}
