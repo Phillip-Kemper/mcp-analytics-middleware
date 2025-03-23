@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { McpAnalytics } from './index.js';
 
 /**
