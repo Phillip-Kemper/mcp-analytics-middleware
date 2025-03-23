@@ -2,23 +2,31 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import { McpAnalytics } from './index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { displayAnalytics } from './view-analytics.js';
 
-// Sample MCP server with analytics
-async function main() {
+/**
+ * Run the MCP server
+ * @param options Server configuration options
+ */
+async function runServer(options: {
+  enableAnalytics?: boolean;
+  dbPath?: string;
+} = {}) {
+  const { enableAnalytics = false, dbPath } = options;
+  let analytics: McpAnalytics | undefined;
+  
   try {
-    // Create a basic MCP server
     const server = new McpServer({ 
       name: 'Sample MCP Server with Analytics',
       version: '1.0.0'
     });
     
-    // Create analytics instance
-    const analytics = new McpAnalytics();
+    let enhancedServer = server;
+    if (enableAnalytics) {
+      analytics = new McpAnalytics(dbPath);
+      enhancedServer = analytics.enhance(server);
+    } 
     
-    // Enhance the server with analytics middleware
-    const enhancedServer = analytics.enhance(server);
-    
-    // Register a simple calculator tool
     enhancedServer.tool(
       'calculator',
       'Simple calculator that performs basic operations',
@@ -57,7 +65,6 @@ async function main() {
       }
     );
     
-    // Register a simple resource
     enhancedServer.resource(
       'hello',
       'mcp://server/hello',
@@ -73,11 +80,44 @@ async function main() {
     );
 
     const transport = new StdioServerTransport();
-    await server.connect(transport);
+    
+    process.on('SIGINT', async () => {
+      if (enableAnalytics && analytics) {
+        await displayAnalytics(analytics, 'Server Analytics Summary');
+        analytics.close();
+      }
+      
+      process.exit(0);
+    });
+    
+    await enhancedServer.connect(transport);
+    
   } catch (error) {
     console.error('Error setting up the server:', error);
+    
+    if (enableAnalytics && analytics) {
+      analytics.close();
+    }
+    
     process.exit(1);
   }
 }
 
-main(); 
+const enableAnalytics = process.argv.includes('--analytics');
+
+let dbPath: string | undefined = undefined;
+for (let i = 0; i < process.argv.length; i++) {
+  const arg = process.argv[i];
+  
+  if (arg.startsWith('--db-path=')) {
+    dbPath = arg.substring('--db-path='.length);
+    break;
+  }
+  
+  if (arg === '--db-path' && i < process.argv.length - 1) {
+    dbPath = process.argv[i + 1];
+    break;
+  }
+}
+
+runServer({ enableAnalytics, dbPath }); 

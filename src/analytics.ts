@@ -41,6 +41,4 @@ export class Analytics {
       LIMIT ?
     `).all(limit);
   }
-
-  // Add more custom analytics as needed
 }

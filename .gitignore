@@ -57,6 +57,7 @@ internal/
 .idea
 yarn.lock
 yarn-error.log
+*.log
 .parallelperf.*
 tests/baselines/reference/dt
 .failed-tests
@@ -65,3 +66,5 @@ package-lock.json
 .eslintcache
 *v8.log
 /lib/
+
+*.db
