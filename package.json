@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "view-analytics": "node dist/view-analytics.js --db-path=analytics.db",
     "inspector": "yarn run build && npx @modelcontextprotocol/inspector node dist/server.js --analytics --db-path=analytics.db",
     "server": "node dist/server.js --analytics --db-path=analytics.db"
