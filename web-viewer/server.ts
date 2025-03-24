@@ -6,7 +6,7 @@ import path from 'path';
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(process.cwd(), 'web-viewer/dist')));
+app.use(express.static(path.join(process.cwd(), 'dist/web-viewer/public')));
 
 // Get database path from command line args
 let dbPath: string | undefined = undefined;
@@ -67,6 +67,12 @@ app.get('/api/tools/daily', (_req: Request, res: Response) => {
     ORDER BY day DESC, calls DESC
   `).all();
   res.json(dailyStats);
+});
+
+// Add a fallback route to serve the index.html for any unknown routes
+// This is necessary for client-side routing to work
+app.get('*', (_req: Request, res: Response) => {
+  res.sendFile(path.join(process.cwd(), 'dist/web-viewer/public/index.html'));
 });
 
 const port = process.env.PORT || 3000;

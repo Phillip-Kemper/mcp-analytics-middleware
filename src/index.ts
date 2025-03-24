@@ -1,7 +1,7 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { AnalyticsDatabase } from './database.js';
 import { enhanceServerWithAnalytics } from './middleware.js';
 import { Analytics } from './analytics.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 
 export class McpAnalytics {
   db: AnalyticsDatabase;
