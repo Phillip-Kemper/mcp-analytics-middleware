@@ -1,16 +1,23 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
-    "declaration": true,
-    "sourceMap": true
+    "outDir": "dist",
+    "rootDir": ".",
+    "jsx": "react-jsx"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*",
+    "web-viewer/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "web-viewer/node_modules"
+  ]
 } 

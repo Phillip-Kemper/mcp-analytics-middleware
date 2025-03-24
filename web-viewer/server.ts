@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { McpAnalytics } from '../src/index.js';
 import path from 'path';
@@ -32,28 +32,28 @@ if (!dbPath) {
 const analytics = new McpAnalytics(dbPath);
 
 // API endpoints
-app.get('/api/stats', (req, res) => {
+app.get('/api/stats', (_req: Request, res: Response) => {
   const toolStats = analytics.db.getToolCallStats();
   const resourceStats = analytics.db.getResourceRequestStats();
   res.json({ toolStats, resourceStats });
 });
 
-app.get('/api/tools/top', (req, res) => {
+app.get('/api/tools/top', (_req: Request, res: Response) => {
   const topTools = analytics.analytics.getTopTools(10);
   res.json(topTools);
 });
 
-app.get('/api/tools/slowest', (req, res) => {
+app.get('/api/tools/slowest', (_req: Request, res: Response) => {
   const slowestTools = analytics.analytics.getSlowestTools(10);
   res.json(slowestTools);
 });
 
-app.get('/api/tools/error-prone', (req, res) => {
+app.get('/api/tools/error-prone', (_req: Request, res: Response) => {
   const errorProneTools = analytics.analytics.getErrorProneTool(10);
   res.json(errorProneTools);
 });
 
-app.get('/api/tools/daily', (req, res) => {
+app.get('/api/tools/daily', (_req: Request, res: Response) => {
   const db = analytics.db.db;
   const dailyStats = db.prepare(`
     SELECT 
