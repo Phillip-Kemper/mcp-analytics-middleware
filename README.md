@@ -1,66 +1,68 @@
 # MCP Analytics Middleware
 
-Analytics middleware for Model Context Protocol servers.
+A simple way to track and visualize how your MCP server is being used. See which tools are most popular, catch errors early, and understand your server's performance.
 
 ## Features
 
-- Track tool calls and resource requests
-- Monitor performance metrics
-- View analytics through console or web interface
-- SQLite database for persistent storage
-- Real-time analytics updates
+- 🔍 Track all tool calls and resource requests
+- 📊 See performance metrics and error rates
+- 🌐 Beautiful web dashboard for live analytics
+- 💾 SQLite database for persistent storage
+- ⚡ Real-time updates every 5 seconds
 
-## Installation
+## Quick Start
 
+1. Install the package:
 ```bash
 yarn add mcp-analytics-middleware
 ```
 
-## Usage
-
-### Basic Setup
-
+2. Add it to your MCP server:
 ```typescript
 import { McpAnalytics } from 'mcp-analytics-middleware';
 
 const analytics = new McpAnalytics('analytics.db');
-
-// Use with your MCP server
 server.use(analytics.middleware);
 ```
 
-### Viewing Analytics
-
-You can view analytics in two ways:
-
-1. Console View:
+3. View your analytics:
 ```bash
+# Console view
 yarn mcp-analytics-view --db-path=analytics.db
+
+# Or check out the fancy web dashboard
+yarn web-viewer --db-path=analytics.db
 ```
 
-2. Web Dashboard:
+The web dashboard will open at http://localhost:5000 and show you live analytics!
+
+## Live Analytics
+
+Want to see what's happening on your server right now? Just start the web viewer with your database path:
+
 ```bash
 yarn web-viewer --db-path=analytics.db
 ```
 
-The web dashboard will be available at http://localhost:5000 and provides:
-- Real-time statistics
-- Interactive tables
-- Performance metrics
-- Error rates
+You'll see:
+- Total tool calls and resource requests
+- Error rates and performance metrics
+- Most used tools and slowest operations
 - Daily usage patterns
+- And it all updates automatically every 5 seconds!
 
-### Running with Inspector
+## Running with Inspector
+
+If you're using the MCP Inspector, just add the analytics flag:
 
 ```bash
 yarn inspector --db-path=analytics.db
 ```
 
-## API
+## API Reference
 
 ### McpAnalytics
-
-The main class for analytics functionality.
+The main class that handles everything.
 
 ```typescript
 class McpAnalytics {
@@ -72,8 +74,7 @@ class McpAnalytics {
 ```
 
 ### AnalyticsDB
-
-Handles database operations.
+Handles all the database stuff.
 
 ```typescript
 class AnalyticsDB {
@@ -83,8 +84,7 @@ class AnalyticsDB {
 ```
 
 ### Analytics
-
-Provides analytics calculations.
+Gives you all the cool analytics calculations.
 
 ```typescript
 class Analytics {
@@ -97,16 +97,13 @@ class Analytics {
 ## Development
 
 ```bash
-# Install dependencies
+# Install everything
 yarn install
 
-# Build
+# Build the project
 yarn build
 
-# Run tests
-yarn test
-
-# Start development server
+# Start the development server
 yarn dev
 ```
 
