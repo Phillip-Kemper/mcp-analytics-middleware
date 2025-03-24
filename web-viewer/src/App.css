@@ -11,7 +11,7 @@ header {
 }
 
 header h1 {
-  color: #2c3e50;
+  color: var(--nord8);
   margin: 0;
   font-size: 2.5em;
 }
@@ -20,22 +20,25 @@ header h1 {
   text-align: center;
   padding: 40px;
   font-size: 1.2em;
-  color: #666;
+  color: var(--nord4);
 }
 
 section {
   margin-bottom: 40px;
-  background: white;
+  background: var(--nord1);
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--nord3);
 }
 
 section h2 {
-  color: #2c3e50;
+  color: var(--nord7);
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 1.5em;
+  border-bottom: 2px solid var(--nord3);
+  padding-bottom: 10px;
 }
 
 .stats-grid {
@@ -46,27 +49,37 @@ section h2 {
 }
 
 .stat-card {
-  background: #f8f9fa;
+  background: var(--nord2);
   padding: 20px;
   border-radius: 6px;
   text-align: center;
+  border: 1px solid var(--nord3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .stat-card h3 {
   margin: 0 0 10px 0;
-  color: #6c757d;
+  color: var(--nord9);
   font-size: 1em;
 }
 
 .stat-card p {
   margin: 0;
   font-size: 1.8em;
-  color: #2c3e50;
+  color: var(--nord8);
   font-weight: bold;
 }
 
 .table-container {
   overflow-x: auto;
+  background: var(--nord2);
+  border-radius: 6px;
+  padding: 1px;
 }
 
 table {
@@ -78,17 +91,30 @@ table {
 th, td {
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #dee2e6;
+  border-bottom: 1px solid var(--nord3);
 }
 
 th {
-  background-color: #f8f9fa;
+  background-color: var(--nord1);
   font-weight: 600;
-  color: #495057;
+  color: var(--nord7);
 }
 
 tr:hover {
-  background-color: #f8f9fa;
+  background-color: var(--nord1);
+}
+
+/* Add some accent colors for different types of data */
+.error-rate {
+  color: var(--nord11);
+}
+
+.success-rate {
+  color: var(--nord14);
+}
+
+.warning {
+  color: var(--nord13);
 }
 
 @media (max-width: 768px) {

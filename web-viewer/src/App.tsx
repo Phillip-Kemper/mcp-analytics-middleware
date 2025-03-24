@@ -93,7 +93,7 @@ function App() {
             </div>
             <div className="stat-card">
               <h3>Tool Error Rate</h3>
-              <p>{stats?.toolStats.errorRate?.toFixed(2) || 0}%</p>
+              <p className="error-rate">{stats?.toolStats.errorRate?.toFixed(2) || 0}%</p>
             </div>
             <div className="stat-card">
               <h3>Total Resource Requests</h3>
@@ -101,7 +101,7 @@ function App() {
             </div>
             <div className="stat-card">
               <h3>Resource Error Rate</h3>
-              <p>{stats?.resourceStats.errorRate?.toFixed(2) || 0}%</p>
+              <p className="error-rate">{stats?.resourceStats.errorRate?.toFixed(2) || 0}%</p>
             </div>
           </div>
         </section>
@@ -124,7 +124,7 @@ function App() {
                     <td>{tool.tool_name}</td>
                     <td>{tool.count}</td>
                     <td>{tool.avg_duration.toFixed(2)}ms</td>
-                    <td>{((tool.error_count / tool.total_calls) * 100).toFixed(2)}%</td>
+                    <td className="error-rate">{((tool.error_count / tool.total_calls) * 100).toFixed(2)}%</td>
                   </tr>
                 ))}
               </tbody>
@@ -152,7 +152,7 @@ function App() {
                     <td>{stat.tool_name}</td>
                     <td>{stat.calls}</td>
                     <td>{stat.avg_duration.toFixed(2)}ms</td>
-                    <td>{stat.error_count}</td>
+                    <td className="error-rate">{stat.error_count}</td>
                   </tr>
                 ))}
               </tbody>
