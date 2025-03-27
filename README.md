@@ -36,7 +36,7 @@ yarn mcp-analytics-view --db-path=analytics.db
 yarn web-viewer --db-path=analytics.db
 ```
 
-The web dashboard will open at http://localhost:5000 and show you live analytics!
+The web dashboard will open at http://localhost:8080 and show you live analytics!
 
 ## Live Analytics
 
