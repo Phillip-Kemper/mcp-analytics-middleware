@@ -4,11 +4,19 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { McpAnalytics } from '../src/index.js';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get the directory where this file is located
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const packageDir = path.resolve(__dirname, '..');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(process.cwd(), 'dist/web-viewer/public')));
+
+// Use the package directory instead of the current working directory
+app.use(express.static(path.join(packageDir, 'web-viewer/public')));
 
 // Get database path from command line args
 let dbPath: string | undefined = undefined;
@@ -74,7 +82,7 @@ app.get('/api/tools/daily', (_req: Request, res: Response) => {
 // Add a fallback route to serve the index.html for any unknown routes
 // This is necessary for client-side routing to work
 app.get('*', (_req: Request, res: Response) => {
-  res.sendFile(path.join(process.cwd(), 'dist/web-viewer/public/index.html'));
+  res.sendFile(path.join(packageDir, 'web-viewer/public/index.html'));
 });
 
 const port = process.env.PORT || 8080;

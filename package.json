@@ -1,11 +1,12 @@
 {
   "name": "mcp-analytics-middleware",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Analytics middleware for Model Context Protocol servers",
   "main": "dist/src/index.js",
   "type": "module",
   "files": [
     "dist",
+    "web-viewer/public",
     "README.md",
     "LICENSE"
   ],
