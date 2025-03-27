@@ -23,28 +23,25 @@ yarn add mcp-analytics-middleware
 ```typescript
 import { McpAnalytics } from 'mcp-analytics-middleware';
 
+let server = new McpServer({ 
+name: 'Sample MCP Server with Analytics',
+version: '1.0.0'
+});
+
 const analytics = new McpAnalytics('analytics.db');
-server.use(analytics.middleware);
+
+server = analytics.enhance(server); // override tool and resource function implementation to record usage in sqlite
 ```
-
-3. View your analytics:
-```bash
-# Console view
-yarn mcp-analytics-view --db-path=analytics.db
-
-# Or check out the fancy web dashboard
-yarn web-viewer --db-path=analytics.db
-```
-
-The web dashboard will open at http://localhost:8080 and show you live analytics!
 
 ## Live Analytics
 
-Want to see what's happening on your server right now? Just start the web viewer with your database path:
+Want to see a dashboard for a Tyescript SDK MCP Server making use of this middleware? You can directly provide a live dashboard using
 
 ```bash
-yarn web-viewer --db-path=analytics.db
+npx -p mcp-analytics-middleware web-viewer --db-path analytics.db
+
 ```
+The web dashboard will open at http://localhost:8080 and show you live analytics!
 
 You'll see:
 - Total tool calls and resource requests
@@ -53,47 +50,18 @@ You'll see:
 - Daily usage patterns
 - And it all updates automatically every 5 seconds!
 
+## Example Implementations
+Example implementatinos of the analytics middleware can be found.
+1. Dummy Caluclator Server Example [src/server.ts](https://github.com/Phillip-Kemper/mcp-analytics-middleware/blob/main/src/server.ts)
+2. Ethereum RPC MCP Server with Analytics [server/index.ts](https://github.com/Phillip-Kemper/ethereum-rpc-mpc/blob/main/server/index.ts)_
+3. Forked Verision of the Google Maps MCP Server with additional Analytics Middleware  [src/google-maps/index.ts](https://github.com/Phillip-Kemper/servers-google-maps-analytics/blob/main/src/google-maps/index.ts)
+
 ## Running with Inspector
 
 If you're using the MCP Inspector, just add the analytics flag:
 
 ```bash
-yarn inspector --db-path=analytics.db
-```
-
-## API Reference
-
-### McpAnalytics
-The main class that handles everything.
-
-```typescript
-class McpAnalytics {
-  constructor(dbPath: string);
-  middleware: Middleware;
-  db: AnalyticsDB;
-  analytics: Analytics;
-}
-```
-
-### AnalyticsDB
-Handles all the database stuff.
-
-```typescript
-class AnalyticsDB {
-  getToolCallStats(): ToolStats;
-  getResourceRequestStats(): ResourceStats;
-}
-```
-
-### Analytics
-Gives you all the cool analytics calculations.
-
-```typescript
-class Analytics {
-  getTopTools(limit: number): ToolStats[];
-  getSlowestTools(limit: number): ToolStats[];
-  getErrorProneTool(limit: number): ToolStats[];
-}
+yarn inspector
 ```
 
 ## License
