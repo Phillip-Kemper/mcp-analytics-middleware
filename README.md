@@ -11,7 +11,6 @@ A simple way to track and visualize how your MCP server is being used. See which
 - 📊 See performance metrics and error rates
 - 🌐 Beautiful web dashboard for live analytics
 - 💾 SQLite database for persistent storage
-- ⚡ Real-time updates every 5 seconds
 
 ## Quick Start
 
