@@ -1,6 +1,6 @@
 {
   "name": "mcp-analytics-middleware",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Analytics middleware for Model Context Protocol servers",
   "main": "dist/index.js",
   "type": "module",
@@ -53,5 +53,11 @@
     "react-dom": "^18.2.0",
     "typescript": "^5.2.2",
     "vite": "^4.3.9"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   }
 }
