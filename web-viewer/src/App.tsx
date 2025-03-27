@@ -29,10 +29,19 @@ interface DailyStats {
   error_count: number;
 }
 
+interface TopTool {
+  tool_name: string;
+  count: number;
+  avg_duration: number;
+  error_count?: number;
+  total_calls?: number;
+  error_rate?: number;
+}
+
 function App() {
   const [stats, setStats] = useState<{ toolStats: ToolStats; resourceStats: ResourceStats } | null>(null);
-  const [topTools, setTopTools] = useState<any[]>([]);
-  const [slowestTools, setSlowestTools] = useState<any[]>([]);
+  const [topTools, setTopTools] = useState<TopTool[]>([]);
+  const [slowestTools, setSlowestTools] = useState<TopTool[]>([]);
   const [errorProneTools, setErrorProneTools] = useState<any[]>([]);
   const [dailyStats, setDailyStats] = useState<DailyStats[]>([]);
   const [loading, setLoading] = useState(true);
@@ -93,7 +102,9 @@ function App() {
             </div>
             <div className="stat-card">
               <h3>Tool Error Rate</h3>
-              <p className="error-rate">{stats?.toolStats.errorRate?.toFixed(2) || 0}%</p>
+              <p className="error-rate">
+                {stats?.toolStats.errorRate?.toFixed(2) || '0'}%
+              </p>
             </div>
             <div className="stat-card">
               <h3>Total Resource Requests</h3>
@@ -101,7 +112,9 @@ function App() {
             </div>
             <div className="stat-card">
               <h3>Resource Error Rate</h3>
-              <p className="error-rate">{stats?.resourceStats.errorRate?.toFixed(2) || 0}%</p>
+              <p className="error-rate">
+                {stats?.resourceStats.errorRate?.toFixed(2) || '0'}%
+              </p>
             </div>
           </div>
         </section>
@@ -119,14 +132,24 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {topTools.map((tool, index) => (
-                  <tr key={index}>
-                    <td>{tool.tool_name}</td>
-                    <td>{tool.count}</td>
-                    <td>{tool.avg_duration.toFixed(2)}ms</td>
-                    <td className="error-rate">{((tool.error_count / tool.total_calls) * 100).toFixed(2)}%</td>
-                  </tr>
-                ))}
+                {topTools.map((tool, index) => {
+                  // Since topTools doesn't include error info, use the overall error rate or 0
+                  // We could fetch the error rate per tool in the future if needed
+                  return (
+                    <tr key={index}>
+                      <td>{tool.tool_name}</td>
+                      <td>{tool.count}</td>
+                      <td>{tool.avg_duration.toFixed(2)}ms</td>
+                      <td className="error-rate">
+                        {tool.error_rate !== undefined 
+                          ? tool.error_rate.toFixed(2) 
+                          : tool.error_count !== undefined && tool.total_calls 
+                            ? ((tool.error_count / tool.total_calls) * 100).toFixed(2)
+                            : '0.00'}%
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -142,7 +165,7 @@ function App() {
                   <th>Tool</th>
                   <th>Calls</th>
                   <th>Avg Duration</th>
-                  <th>Errors</th>
+                  <th>Error Rate</th>
                 </tr>
               </thead>
               <tbody>
@@ -152,7 +175,9 @@ function App() {
                     <td>{stat.tool_name}</td>
                     <td>{stat.calls}</td>
                     <td>{stat.avg_duration.toFixed(2)}ms</td>
-                    <td className="error-rate">{stat.error_count}</td>
+                    <td className="error-rate">
+                      {((stat.error_count / stat.calls) * 100).toFixed(2)}%
+                    </td>
                   </tr>
                 ))}
               </tbody>

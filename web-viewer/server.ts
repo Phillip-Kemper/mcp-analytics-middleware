@@ -75,7 +75,7 @@ app.get('*', (_req: Request, res: Response) => {
   res.sendFile(path.join(process.cwd(), 'dist/web-viewer/public/index.html'));
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Analytics web viewer running at http://localhost:${port}`);
   console.log(`Using database at: ${dbPath}`);

@@ -13,9 +13,9 @@
     "build": "tsc && yarn build-web-viewer",
     "build-web-viewer": "vite build web-viewer --outDir ../dist/web-viewer/public",
     "view-analytics": "node dist/view-analytics.js --db-path=analytics.db",
-    "inspector": "yarn run build && npx @modelcontextprotocol/inspector node dist/server.js --analytics --db-path=analytics.db",
+    "inspector": "yarn run build && npx @modelcontextprotocol/inspector node dist/src/server.js --analytics --db-path=analytics.db",
     "server": "node dist/server.js --analytics --db-path=analytics.db",
-    "web-viewer": "node dist/web-viewer/server.js --db-path=analytics.db",
+    "web-viewer": "node dist/web-viewer/server.js",
     "prepublishOnly": "yarn run build"
   },
   "bin": {
