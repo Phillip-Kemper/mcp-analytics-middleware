@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { McpAnalytics } from '../src/index.js';

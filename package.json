@@ -1,6 +1,6 @@
 {
   "name": "mcp-analytics-middleware",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Analytics middleware for Model Context Protocol servers",
   "main": "dist/src/index.js",
   "type": "module",
@@ -19,7 +19,7 @@
     "prepublishOnly": "yarn run build"
   },
   "bin": {
-    "mcp-analytics-view": "./dist/view-analytics.js"
+    "web-viewer": "./dist/web-viewer/server.js"
   },
   "keywords": [
     "mcp",
