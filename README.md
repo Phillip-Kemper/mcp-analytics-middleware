@@ -96,19 +96,6 @@ class Analytics {
 }
 ```
 
-## Development
-
-```bash
-# Install everything
-yarn install
-
-# Build the project
-yarn build
-
-# Start the development server
-yarn dev
-```
-
 ## License
 
 MIT
