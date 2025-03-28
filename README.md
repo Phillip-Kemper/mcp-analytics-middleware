@@ -3,6 +3,8 @@
 [![npm version](https://img.shields.io/npm/v/mcp-analytics-middleware.svg)](https://www.npmjs.com/package/mcp-analytics-middleware)
 [![npm downloads](https://img.shields.io/npm/dm/mcp-analytics-middleware.svg)](https://www.npmjs.com/package/mcp-analytics-middleware)
 
+![MCP Analytics Ad](https://github.com/user-attachments/assets/b9296515-a8e6-4957-a212-705d50004703)
+
 A simple way to track and visualize how your MCP server is being used. See which tools are most popular, catch errors early, and understand your server's performance.
 
 ## Features
