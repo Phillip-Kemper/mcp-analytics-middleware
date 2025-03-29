@@ -9,7 +9,7 @@ A simple way to track and visualize how your MCP server is being used. See which
 
 - 🔍 Track all tool calls and resource requests
 - 📊 See performance metrics and error rates
-- 🌐 Beautiful web dashboard for live analytics
+- 🌐 Web dashboard for live analytics
 - 💾 SQLite database for persistent storage
 
 ## Quick Start
@@ -47,8 +47,6 @@ You'll see:
 - Total tool calls and resource requests
 - Error rates and performance metrics
 - Most used tools and slowest operations
-- Daily usage patterns
-- And it all updates automatically every 5 seconds!
 
 ## Example Implementations
 Example implementatinos of the analytics middleware can be found.
@@ -61,7 +59,7 @@ Example implementatinos of the analytics middleware can be found.
 If you're using the MCP Inspector, just add the analytics flag:
 
 ```bash
-yarn inspector
+yarn inspector --analytics --db-path analytics.db
 ```
 
 ## License
