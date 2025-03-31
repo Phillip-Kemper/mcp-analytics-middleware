@@ -3,9 +3,8 @@
 [![npm version](https://img.shields.io/npm/v/mcp-analytics-middleware.svg)](https://www.npmjs.com/package/mcp-analytics-middleware)
 [![npm downloads](https://img.shields.io/npm/dm/mcp-analytics-middleware.svg)](https://www.npmjs.com/package/mcp-analytics-middleware)
 
-A simple way to track and visualize how your MCP server is being used. See which tools are most popular, catch errors early, and understand your server's performance. A small video demo and motivation for this is described here:
-- Quick Demo
-- Supporting Blog Post
+A simple way to track and visualize how your MCP server is being used. See which tools are most popular, catch errors early, and understand your server's performance. 
+- [Supporting Blog Post](https://www.kemperino.com/posts/mcp-analytics/)
 
 ## Features
 
